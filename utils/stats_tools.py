@@ -29,7 +29,7 @@ def ft_min(values):
 
 def ft_max(values):
 	m = values[0]
-	for i in values:
+	for i in values: 
 		if i > m:
 			m = i
 	return m
