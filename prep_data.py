@@ -16,7 +16,7 @@ columns = [
 "symmetry_worst","fractal_dimension_worst"
 ]
 
-EXCLUDE_MEAN = {"fractal_dimension_mean", "symmetry_mean", "smoothness_mean"}
+EXCLUDE_MEAN = {"fractal_dimension_mean", "symmetry_mean", "smoothness_mean", "radius_mean", "area_mean"}
 
 # def prepvalues(df):
 # 	"""Standardise les colonnes numériques (optionnel).
@@ -93,7 +93,8 @@ def main(argv=None):
 
 	train_df.to_csv(os.path.join(outdir, "train_data.csv"), index=False)
 	test_df.to_csv(os.path.join(outdir, "test_data.csv"), index=False)
-	corr_matrix = train_df.corr()
+	# Only compute correlations on numeric columns to avoid casting errors from labels
+	corr_matrix = train_df.corr(numeric_only=True)
 	print(corr_matrix)
 
 if __name__ == "__main__":
